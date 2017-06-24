@@ -1,0 +1,9 @@
+#intro{
+	position: absolute;
+	margin: auto;
+	width: 100%;
+	top: 30%;
+	font-size: 10em;
+	letter-spacing: 200px;
+	text-align: center;
+}

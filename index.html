@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Artystant - Home</title>
+
+		<link rel="stylesheet" type="text/css" href="./res/css/loader.css">
+		<link rel="stylesheet" type="text/css" href="./res/css/intro.css">
+		<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Pacifico" rel="stylesheet">
+		<style type="text/css">
+		body{
+			font-family: 'Indie Flower', cursive;
+		}
+		</style>
+
+		<script type="text/javascript" src="./res/js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript">
+			function executeIntroAnimation()
+			{
+				intro = $("#intro");
+				intro.css("display","block");
+				intro.animate({"letter-spacing":"2px","font-size":"10em"},1024).animate({"top":"0%","font-size":"40px"},512);	
+			}
+			$(window).bind("load", function(){
+				$("#loader").animate({"opacity":"0"},1024);
+				count=0;
+				body=$('body');
+				tem = setInterval(function(){
+					body.css("background-color","rgb("+count+","+count+","+count+")");
+					count++;
+					if(count==256)
+					{
+						$("#loader").css("display","none");
+						clearInterval(tem);
+						executeIntroAnimation();
+					}
+				},4);
+			});
+		</script>
+	</head>
+	<body id="body">
+		<div id="loader">
+			<center>
+				<div class="loader"></div>
+			</center>
+		</div>
+		<div id="intro">
+			Artystant
+		</div>
+	</body>
+	<script type="text/javascript">
+		$("#intro").on("click",function(){
+				$("#intro").animate({"letter-spacing":"10px"},100).animate({"letter-spacing":"2px"},100);
+			});
+	</script>
+</html>
