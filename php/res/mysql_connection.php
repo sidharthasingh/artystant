@@ -1,5 +1,5 @@
 <?php
-	require("database_config.php");
+	require("config.php");
 	class artystantDB
 	{
 		var $conn;
