@@ -19,7 +19,7 @@
 	function getUserMeta($uid,$meta_key="")
 	{
 		global $artdb;
-		if(!is_numeric($uid) && !strpos("$meta_key",";"))
+		if(!is_numeric($uid) || strpos("$meta_key",";"))
 			return false;
 		if($meta_key=="")
 		{
@@ -49,7 +49,7 @@
 	function getUserData($uid,$ch)
 	{
 		global $artdb;
-		if(!is_numeric($uid) && !strpos("$ch",";"))
+		if(!is_numeric($uid) || strpos("$ch",";"))
 			return false;
 		$result = $artdb->get_row("select $ch from users where ID=$uid;");
 		if($result)
@@ -61,7 +61,7 @@
 	function setUserData($uid,$key,$val)
 	{
 		global $artdb;
-		if(!is_numeric($uid) && !strpos("$key",";") && !strpos("$val",";"))
+		if(!is_numeric($uid) || strpos("$key",";") || strpos("$val",";"))
 			return false;
 		if($key == "user_pass")
 			$val=md5($val);
@@ -99,7 +99,8 @@
 			return false;
 	}
 
-	var_dump(setUserData(3,"user_pass","thebest"));
+	// createUser("hotshot","thebest","a@b.c","bumble","bee","inactive");
+	var_dump(setUserData(3,"user_pass","thebst"));
 	echo "\n";
-	var_dump(validateUserPass(3,"thebest"));
+	var_dump(validateUserPass(3,"thbst"));
 ?>
