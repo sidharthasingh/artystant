@@ -1,11 +1,13 @@
 <?php
 	require("session.php");
+	require("pass.php");
+
 	function createUser($login,$pass,$email,$fname,$lname,$ustatus)
 	{
 		global $artdb;
 		return $artdb->insertValue("users",array(
 			"user_login"=>$login,
-			"user_pass"=>$pass,
+			"user_pass"=>md5($pass),
 			"user_email"=>$email,
 			"user_registered"=>date('Y-m-d H:i:s'),
 			"first_name"=>$fname,
@@ -17,6 +19,8 @@
 	function getUserMeta($uid,$meta_key="")
 	{
 		global $artdb;
+		if(!is_numeric($uid) && !strpos("$meta_key",";"))
+			return false;
 		if($meta_key=="")
 		{
 			$sql="select meta_key, meta_value from user_meta where user_id=$uid;";
@@ -42,6 +46,28 @@
 		}
 	}
 
+	function getUserData($uid,$ch)
+	{
+		global $artdb;
+		if(!is_numeric($uid) && !strpos("$ch",";"))
+			return false;
+		$result = $artdb->get_row("select $ch from users where ID=$uid;");
+		if($result)
+			return $result[$ch];
+		else
+			return false;
+	}
+
+	function setUserData($uid,$key,$val)
+	{
+		global $artdb;
+		if(!is_numeric($uid) && !strpos("$key",";") && !strpos("$val",";"))
+			return false;
+		if($key == "user_pass")
+			$val=md5($val);
+		return $artdb->query("update users set user_pass='$val' where id=$uid;");
+	}
+
 	function setUserMeta($uid,$key,$val)
 	{
 		global $artdb;
@@ -56,15 +82,24 @@
 	function setUserMetaBulk($uid,$arr)
 	{
 		global $artdb;
-		$newArr=array();
-		foreach($arr as $key => $val)
-		{
-			$newArr[] = array(
-					"user_id"=>$uid,
-					"meta_key"=>$key,
-					"meta_value"=>$val
-				);
-		}
-		return $artdb->insertBatch("user_meta",$newArr);
+		for($i=0;$i<count($arr);$i++)
+			$arr[$i]["user_id"] = $uid;
+		return $artdb->insertBatch("user_meta",$arr);
 	}
+
+	function getUser($uid)
+	{
+		global $artdb;
+		$sql = "select * from users where ID=$uid;";
+		$user = $artdb->get_row($sql);
+		$meta = getUserMeta($uid);
+		if($user && $meta)
+			return array_merge($user,$meta);
+		else
+			return false;
+	}
+
+	var_dump(setUserData(3,"user_pass","thebest"));
+	echo "\n";
+	var_dump(validateUserPass(3,"thebest"));
 ?>

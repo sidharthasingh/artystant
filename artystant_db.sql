@@ -9,3 +9,4 @@ create table users(ID int primary key auto_increment,user_login varchar(60) not 
 create table user_meta(ID int primary key not null,user_id int not null,meta_key varchar(100) not null,meta_value varchar(1000));
 alter table user_meta drop primary key;
 alter table user_meta modify column ID int primary key auto_increment;
+create table log(ID bigint primary key auto_increment, date_time datetime, data varchar(5000));

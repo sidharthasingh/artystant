@@ -87,6 +87,15 @@
 				return false;
 		}
 
+		function log($arr,$date)
+		{
+			if(!$date)
+				$date = date('Y-m-d H:i:s');
+			return $this->insertValue("log",array(
+					"date_time"=>$date,
+					"data"=>json_encode($arr)
+				));
+		}
 	}
 
 	$artdb = new artystantDB;
