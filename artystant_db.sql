@@ -10,3 +10,13 @@ create table user_meta(ID int primary key not null,user_id int not null,meta_key
 alter table user_meta drop primary key;
 alter table user_meta modify column ID int primary key auto_increment;
 create table log(ID bigint primary key auto_increment, date_time datetime, data varchar(5000));
+alter table users modify column user_email varchar(100) unique not null;
+
+
+
+
+
+
+
+
+	

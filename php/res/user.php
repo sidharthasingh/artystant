@@ -99,6 +99,19 @@
 			return false;
 	}
 
+	function getUserId($email)
+	{
+		global $artdb;
+		if(strpos($email,";"))
+			return false;
+		$result = $artdb->get_row("select ID from users where user_email='$email';");
+		if($result)
+			return $result["ID"];
+		else
+			return false;
+	}
+
+	var_dump(getUserId("a@b.c"));
 	// createUser("hotshot","thebest","a@b.c","bumble","bee","inactive");
 	var_dump(setUserData(3,"user_pass","thebst"));
 	echo "\n";
