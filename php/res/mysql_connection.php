@@ -50,6 +50,9 @@
 		{
 			if($this->conn)
 			{
+				$sql=trim($sql);
+				if($sql[strlen($sql)-1]!=';')
+					$sql.=';';
 				$result = $this->conn->query($sql);
 				if($result)
 					return $result;
@@ -67,6 +70,9 @@
 
 		function get_row($sql)
 		{
+			$sql=trim($sql);
+			if($sql[strlen($sql)-1]!=';')
+				$sql.=';';
 			$result = $this->query($sql);
 			if($result->num_rows>0)
 				return $result->fetch_assoc();
@@ -75,6 +81,9 @@
 
 		function get_result($sql)
 		{
+			$sql=trim($sql);
+			if($sql[strlen($sql)-1]!=';')
+				$sql.=';';
 			$result = $this->query($sql);
 			if($result->num_rows>0)
 			{
@@ -87,7 +96,7 @@
 				return false;
 		}
 
-		function log($arr,$date)
+		function log($arr,$date="")
 		{
 			if(!$date)
 				$date = date('Y-m-d H:i:s');
