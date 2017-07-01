@@ -1,4 +1,6 @@
 <?php
+	require("site.php");
+
 	/*
 		STATUS CODE
 		300 : request has more than one possible response
@@ -14,5 +16,10 @@
 	{
 		header("Location : $url",true,$code);
 		exit;
+	}
+
+	function pageNotFound()
+	{
+		redirect(site_url()."page_not_found/",302);
 	}
 ?>

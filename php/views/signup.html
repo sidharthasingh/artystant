@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SignUp</title>
+		<script type="text/javascript" src="./../res/js/jquery-3.2.1.min.js"></script>
+	</head>
+	<body>
+	<form>
+		<input type="text" id="signup_name">
+		<input type="email" id="signup_email">
+		<input type="password" id="signup_pass">
+		<input type="submit" name="SUBMIT" id="signup_submit" onclick="return false;" value="Submit">
+	</form>
+	</body>
+	<script type="text/javascript">
+		function validEmail(para)
+		{
+			var email = new String(para);
+			for(i=0;i<email.length;i++)
+			{
+				if(email.charAt(i)=='@')
+				{
+					if(i==0)
+						return false;
+					else
+					{
+						for(j=i+1;j<email.length;j++)
+							if(email.charAt(j)=='.')
+							{
+								if(j==i+1)
+									return false;
+								else if(j==email.length-1)
+									return false;
+								else
+									return true;
+							}
+					}
+				}
+			}
+			return false;
+		}
+		function errorCode(val,para)
+		{
+			this={
+				message:para,
+				code:val
+			};
+		}
+		function validName(para)
+		{
+			 var name=new String(para);
+		}
+		function validPass(para)
+		{
+			var pass= new String(para);
+			if(pass.length<8)
+				return errorCode(0,"Password not long enough");
+			else
+				return errorCode(1);
+		}
+		$("#signup_submit").click(function(){
+			name=$("#signup_name").val();
+			email=$("#signup_email").val();
+			pass=$("#signup_pass").val();
+			alert(validEmail(name));
+		});
+	</script>
+</html>

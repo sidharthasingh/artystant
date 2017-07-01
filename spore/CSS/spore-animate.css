@@ -1,0 +1,54 @@
+/* LIST AND CLASS ACTIONS FOR THE LIST / LINKS AND ANIMATIONS IMAGES - WHEN YOU CLICK ON A LINK SPECIAL COLOR OR ANIMATIONS*/
+
+ul { 
+list-style-type: none; 
+margin:0;
+padding:0;
+}
+
+.text-part-A5 ul li a {
+	text-decoration:none;
+	color:#666;
+	-webkit-transition:color 250ms ease-out; 
+	-moz-transition:color 250ms ease-out;
+	-o-transition:color 250ms ease-out;
+	transition:color 250ms ease-out;
+}
+ 
+.text-part-A5 ul li a:hover {color:#999;}
+
+.text-part-menutab ul li a {
+	text-decoration:none;
+	color:#CCC;
+	-webkit-transition:color 250ms ease-out; 
+	-moz-transition:color 250ms ease-out;
+	-o-transition:color 250ms ease-out;
+	transition:color 250ms ease-out;
+}
+ 
+.text-part-menutab ul li a:hover {color:#999;}
+
+
+.grayscale{ 
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);  /* For Webkit browsers */
+    filter: gray;  /* For IE 6 - 9 */
+    -webkit-transition: all .6s ease;  /* Transition for Webkit browsers */
+}
+
+.grayscale:hover { 
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+    filter: none;
+}
+
+.grow { transition: all 1s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
+
+.object {
+	
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out; /** Chrome & Safari **/
+    -moz-transition: all 0.25s ease-in-out; /** Firefox **/
+    -o-transition: all 0.25s ease-in-out; /** Opera **/
+}
